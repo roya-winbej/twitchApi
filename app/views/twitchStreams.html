@@ -1,0 +1,33 @@
+<div class="twitch" ng-controller="MainCtrl">
+    <div class="twitch__search">
+        <div class="input-group ">
+            <span class="input-group-addon search-icon" id="input"><i class="glyphicon glyphicon-search"></i></span>
+            <input ng-model="search" type="text" class="form-control search-input" placeholder="Channel name" aria-describedby="input">
+        </div>
+    </div>
+    <!-- /.twitch__search -->
+    <div class="twitch__controls">
+        <a href="#" class="active" ng-click="all()">All</a>
+        <a href="#" ng-click="online()">Online</a>
+        <a href="#" ng-click="offline()">Offline</a>
+    </div>
+    <!-- /.twitch__controls -->
+    <div class="twitch__streams">
+        <div class="stream" ng-repeat="user in allUsers | filter: search">
+            <a href="http://twitch.tv/{{user.name}}" target="_blank">
+                <div class="stream__logo">
+                    <img class="stream__img" ng-src="{{user.logo}}" alt="user pic">
+                </div>
+                <!-- /.stream__logo -->
+                <div class="stream__info">
+                    <h2 class="stream__title">{{user.name}}<span class="{{user.icon}}">{{user.icon}}</span></h2>
+                    <p class="stream__body">{{user.stream.channel.status}}</p>
+                </div>
+                <!-- /.stream__info -->
+            </a>
+        </div>
+        <!-- /.stream -->
+    </div>
+    <!-- /.twitch__streams -->
+</div>
+<!-- /.twitch -->
